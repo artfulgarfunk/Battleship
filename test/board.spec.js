@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow } from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {expect} from 'chai';
 
 import Cell from '../lib/components/cell';
@@ -8,7 +8,9 @@ import Board from '../lib/components/board';
 describe('<Board />', function () {
   it('renders 100 cells', function () {
     const wrapper = shallow(<Board />);
-    expect(wrapper.find(Cell)).to.have.length(100)
+    console.log('HELLO HELLO HELLO');
+    console.log(wrapper.state('allCells'));
+    expect(wrapper.state('allCells')).to.have.length(100)
   });
 
   it('has a hundred element cell status array', () => {
