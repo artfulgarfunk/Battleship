@@ -19,10 +19,10 @@ describe('<Cell />', () => {
   });
 
   it('simulates click events', () => {
-    const onButtonClick = sinon.spy();
-    const wrapper = mount(<Cell onButtonClick={onButtonClick} />);
+    const onClick = sinon.spy();
+    const wrapper = mount(<Cell status={null} onClick={onClick} />);
     wrapper.find('button').simulate('click');
-    expect(onButtonClick.calledOnce).to.equal(true);
+    expect(onClick.calledOnce).to.equal(true);
   });
 
   it('displays the value of a prop', () => {
