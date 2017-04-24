@@ -1,5 +1,3 @@
 # Battleship
 
-to do
-- iterate for render cell method
-- user stories
+A MERN stack multiplayer Battleship game
