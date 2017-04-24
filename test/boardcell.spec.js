@@ -9,8 +9,8 @@ import Board from '../lib/components/board';
 describe('Board Features', () => {
   it('cell statuses initially equal board array statuses', () => {
     const wrapper = shallow(<Board />);
-    wrapper.state('allCells').forEach(function(element) {
-      expect(element.props.status).to.equal('~')
+    wrapper.state('allStatuses').forEach(function(element) {
+      expect(element).to.equal('~')
     });
   });
 
