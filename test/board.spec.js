@@ -19,7 +19,7 @@ describe('<Board />', function () {
   it('with default values of null for each cell', () => {
     const wrapper = shallow(<Board />);
     wrapper.state('allStatuses').forEach(function(element) {
-      expect(element).to.equal('.')
+      expect(element[0]).to.equal(' ')
     });
   });
 })
