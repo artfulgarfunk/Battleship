@@ -10,6 +10,7 @@ A MERN stack multiplayer Battleship game
 - separate to two boards; one you can see ships on (no fog), one belonging to opponent with pre-placed ships and fog'o'war
 - place ships on own board
 - Simple CSS for cells
+- ensure full test coverage!
 - player class with 2 separate pages; each has own board no fog, opponent board with fog
 - game finish condition
 - mongo db save game history
