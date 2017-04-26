@@ -31,4 +31,15 @@ describe('<OwnBoard />', function () {
     expect(wrapper.state('allStatuses')[2][0]).to.equal('~')
   });
 
+  it("ships can only take up a max of 10 ships", () => {
+    const wrapper = mount(<OwnBoard />);
+    for(let i = 0; i<10; i++) {
+      wrapper.instance().handleClick(i)
+      expect(wrapper.state('allStatuses')[i][0]).to.equal('B')
+    }
+    wrapper.instance().handleClick(10)
+    expect(wrapper.state('allStatuses')[10][0]).to.equal('~')
+
+  });
+
 })
