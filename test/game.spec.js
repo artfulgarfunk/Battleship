@@ -21,6 +21,14 @@ describe('<Game />', function () {
     expect(wrapper.find(Cell)).to.have.length(442);
   });
 
+  it('with default values of null for each cell', () => {
+    const wrapper = mount(<Game />);
+    wrapper.state('P1Map').forEach(function(element) {
+    expect(element[0]).to.equal('~')
+    expect(element[1]).to.equal(' ')
+    });
+  });
+
   it('it has a fleet of ships with 5 types', function () {
     const wrapper = shallow(<Game />);
     const fleet = wrapper.state('fleet');
@@ -55,6 +63,28 @@ describe('<Game />', function () {
     const wrapper = shallow(<Game />);
     const fleet = wrapper.state('fleet');
     expect(fleet[4]).to.eql(['submarine',1,2])
+  });
+
+  it('cell click reveals hit or miss', () => {
+    // const wrapper = shallow(<Game />);
+    // wrapper.instance().handleClick(0)
+    // expect(wrapper.state('P1Map')[0][0]).to.equal("~")
+  });
+
+  it('second cell click does not change cell status', () => {
+    // const wrapper = shallow(<Game />);
+    // wrapper.instance().handleClick(2)
+    // wrapper.instance().handleClick(2)
+    // expect(wrapper.state('P1Map')[2][0]).to.equal('')
+  });
+
+  it('clicking on a ship in the fleet selects that ship for the board', () => {
+    const wrapper = mount(<Game />);
+    // const fleet = wrapper.find(Fleet).nodes[0]
+    // console.log('FLEET FLEET FLEET FLEET FLEET FLEET FLEET');
+    // console.log(wrapper.find(Fleet).nodes[0]);
+    wrapper.instance().handleFleetClick(['carrier',5,1])
+    expect(wrapper.state('currentShip')).to.eql(['carrier',5,1])
   });
 
 })
