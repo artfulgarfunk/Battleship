@@ -100,5 +100,4 @@ describe('<Game />', function () {
       expect(wrapper.state('P1Map')[x][0]).to.equal("B")
     }
   });
-
 })
