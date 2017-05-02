@@ -27,6 +27,10 @@ describe('<Game />', function () {
     expect(element[0]).to.equal('~')
     expect(element[1]).to.equal(' ')
     });
+    // wrapper.state('P2Map').forEach(function(element) {
+    // expect(element[0]).to.equal('~')
+    // expect(element[1]).to.equal(' ')
+    // });
   });
 
   it('it has a fleet of ships with 5 types', function () {
@@ -85,6 +89,16 @@ describe('<Game />', function () {
     // console.log(wrapper.find(Fleet).nodes[0]);
     wrapper.instance().handleFleetClick(['carrier',5,1])
     expect(wrapper.state('currentShip')).to.eql(['carrier',5,1])
+  });
+
+  it('then clicking on own board puts down the ship', () => {
+    const wrapper = mount(<Game />);
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    wrapper.instance().ownHandleClick(0)
+    for (let x=0; x<boat[1]; x++) {
+      expect(wrapper.state('P1Map')[x][0]).to.equal("B")
+    }
   });
 
 })
