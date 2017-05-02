@@ -81,6 +81,42 @@ describe('<Game />', function () {
     }
   });
 
+  it('but not if it went overboard', () => {
+    const wrapper = shallow(<Game />);
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    wrapper.instance().ownHandleClick(8)
+    for (let x = 8; x < 8 + boat[1]; x++) {
+      expect(wrapper.state('P1Map')[x][0]).to.eql("~")
+    }
+  });
+
+  it('and not if it were too close to another ship (same line)', () => {
+    const wrapper = shallow(<Game />);
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    wrapper.instance().ownHandleClick(0)
+    const otherBoat = ['cruiser',3,2]
+    wrapper.instance().handleFleetClick(otherBoat)
+    wrapper.instance().ownHandleClick(5)
+    for (let x = 5; x < 5 + otherBoat[1]; x++) {
+      expect(wrapper.state('P1Map')[x][0]).to.eql("~")
+    }
+  });
+
+  it('and not if it were too close to another ship (adjacent line)', () => {
+    const wrapper = shallow(<Game />);
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    wrapper.instance().ownHandleClick(95)
+    const otherBoat = ['cruiser',3,2]
+    wrapper.instance().handleFleetClick(otherBoat)
+    wrapper.instance().ownHandleClick(82)
+    for (let x = 82; x < 82 + otherBoat[1]; x++) {
+      expect(wrapper.state('P1Map')[x][0]).to.eql("~")
+    }
+  });
+
   it('and takes it out of the fleet', () => {
     const wrapper = mount(<Game />);
     const boat = ['carrier',5,1]
