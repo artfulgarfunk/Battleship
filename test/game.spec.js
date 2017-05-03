@@ -140,7 +140,14 @@ describe('<Game />', function () {
     expect(asSeenByOpponent[5]).to.eql(['~', '~'])
   });
 
-  it('', () => {
-
+  it('player can click button to change orientation then place ship vertically', () => {
+    const wrapper = shallow(<Game />);
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    wrapper.instance().changeHorizontal()
+    wrapper.instance().ownHandleClick(0)
+    for (let x = 0; x < boat[1]; x++) {
+      expect(wrapper.state('P1Map')[x*10][0]).to.eql("B")
+    }
   });
 })
