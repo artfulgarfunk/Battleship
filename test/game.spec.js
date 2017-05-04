@@ -7,13 +7,16 @@ import Cell from '../lib/components/cell';
 import OwnBoard from '../lib/components/ownBoard';
 import Fleet from '../lib/components/fleet';
 import Board from '../lib/components/board';
+import Switch from '../lib/components/switch';
+
 
 describe('<Game />', function () {
-  it('renders 2 player boards, 2 opponent boards & 2 fleets', () => {
+  it('renders 2 player boards, 2 opponent boards,2 fleets & 3 switches(orientation and turn)', () => {
     const wrapper = shallow(<Game />);
     expect(wrapper.find(Board)).to.have.length(2);
     expect(wrapper.find(OwnBoard)).to.have.length(2);
     expect(wrapper.find(Fleet)).to.have.length(2);
+    expect(wrapper.find(Switch)).to.have.length(3);
   });
 
   it('renders a total of 442 Cell components', () => {
