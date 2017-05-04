@@ -6,5 +6,15 @@ import Cell from '../lib/components/cell';
 import Board from '../lib/components/board';
 
 describe('<Board />', function () {
+  it('allows setting props', () => {
+    const wrapper = mount(<Board playermap={Array(100).fill(' ')} />);
+    wrapper.setProps({val: 'hit'});
+    expect(wrapper.props().val).to.equal('hit')
+  });
+
+  it ('contains 100 cells', () => {
+    const wrapper = mount(<Board playermap={Array(100).fill(['~', ' '])} />);
+    expect(wrapper.find(Cell)).to.have.length(100);
+  });
 
 })
