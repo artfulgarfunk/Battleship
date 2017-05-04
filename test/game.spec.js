@@ -29,39 +29,41 @@ describe('<Game />', function () {
     });
   });
 
-  it('it has a fleet of ships with 5 types', () => {
+  it('it has a two fleets with 5 types of ships', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet).to.have.length(5)
+    const fleet2 = wrapper.state('P2Fleet');
+    expect(fleet2).to.have.length(5)
   });
 
-  it('has a 5-cell aircraft carrier', () => {
+  it('each has a 5-cell aircraft carrier', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet[0]).to.eql(['carrier',5,1])
   });
 
-  it('has a 4-cell Battleship', () => {
+  it('each has a 4-cell Battleship', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet[1]).to.eql(['battleship',4,1])
   });
 
-  it('has a 3-cell cruiser', () => {
+  it('each has a 3-cell cruiser', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet[2]).to.eql(['cruiser',3,2])
   });
 
-  it('has two 2-cell destroyers', () => {
+  it('each has two 2-cell destroyers', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet[3]).to.eql(['destroyer',2,2])
   });
 
-  it('has two 1-cell submarines', () => {
+  it('each has two 1-cell submarines', () => {
     const wrapper = shallow(<Game />);
-    const fleet = wrapper.state('fleet');
+    const fleet = wrapper.state('P1Fleet');
     expect(fleet[4]).to.eql(['submarine',1,2])
   });
 
@@ -122,7 +124,7 @@ describe('<Game />', function () {
     const boat = ['carrier',5,1]
     wrapper.instance().handleFleetClick(boat)
     wrapper.instance().ownHandleClick(0)
-    expect(wrapper.state('fleet')[0]).to.eql(['carrier',5,0])
+    expect(wrapper.state('P1Fleet')[0]).to.eql(['carrier',5,0])
   });
 
   it('and the opponent can fire and see if they\'ve hit or missed', () => {
