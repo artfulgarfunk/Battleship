@@ -12,8 +12,8 @@ describe('<Board />', function () {
     expect(wrapper.props().val).to.equal('hit')
   });
 
-  it ('contains 100 cells', () => {
-    const wrapper = mount(<Board playermap={Array(100).fill(['~', ' '])} />);
+  it ('contains 100 cells', function () {
+    const wrapper = shallow(<Board playermap={Array(100).fill(['~', ' '])} />);
     expect(wrapper.find(Cell)).to.have.length(100);
   });
 
