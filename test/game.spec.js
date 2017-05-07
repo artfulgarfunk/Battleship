@@ -72,15 +72,15 @@ describe('<Game />', function () {
 
   it('clicking on a ship in the fleet selects that ship for the board', () => {
     const wrapper = shallow(<Game />);
-    wrapper.instance().handleFleetClick(['carrier',5,1])
+    wrapper.instance().selectShipClick(['carrier',5,1])
     expect(wrapper.state('currentShip')).to.eql(['carrier',5,1])
   });
 
   it('then clicking on own board puts down the ship', () => {
     const wrapper = shallow(<Game />);
     const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(0)
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(0)
     for (let x = 0; x < boat[1]; x++) {
       expect(wrapper.state('P1Map')[x][0]).to.eql("B")
     }
@@ -89,8 +89,8 @@ describe('<Game />', function () {
   it('but not if it went overboard', () => {
     const wrapper = shallow(<Game />);
     const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(8)
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(8)
     for (let x = 8; x < 8 + boat[1]; x++) {
       expect(wrapper.state('P1Map')[x][0]).to.eql("~")
     }
@@ -99,11 +99,11 @@ describe('<Game />', function () {
   it('and not if it were too close to another ship (same line)', () => {
     const wrapper = shallow(<Game />);
     const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(0)
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(0)
     const otherBoat = ['cruiser',3,2]
-    wrapper.instance().handleFleetClick(otherBoat)
-    wrapper.instance().ownHandleClick(5)
+    wrapper.instance().selectShipClick(otherBoat)
+    wrapper.instance().placeShipClick(5)
     for (let x = 5; x < 5 + otherBoat[1]; x++) {
       expect(wrapper.state('P1Map')[x][0]).to.eql("~")
     }
@@ -112,11 +112,11 @@ describe('<Game />', function () {
   it('and not if it were too close to another ship (adjacent line)', () => {
     const wrapper = shallow(<Game />);
     const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(95)
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(95)
     const otherBoat = ['cruiser',3,2]
-    wrapper.instance().handleFleetClick(otherBoat)
-    wrapper.instance().ownHandleClick(82)
+    wrapper.instance().selectShipClick(otherBoat)
+    wrapper.instance().placeShipClick(82)
     for (let x = 82; x < 82 + otherBoat[1]; x++) {
       expect(wrapper.state('P1Map')[x][0]).to.eql("~")
     }
@@ -124,33 +124,33 @@ describe('<Game />', function () {
 
   it('and takes it out of the fleet', () => {
     const wrapper = mount(<Game />);
-    const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(0)
+    const boat = ['carrier', 5, 1]
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(0)
     expect(wrapper.state('P1Fleet')[0]).to.eql(['carrier',5,0])
   });
 
   it('and the opponent can fire and see if they\'ve hit or missed', () => {
     const wrapper = shallow(<Game />);
-    const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().ownHandleClick(0)
+    const boat = ['carrier', 5, 1]
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().placeShipClick(0)
     const asSeenByOpponent = wrapper.find(Board).nodes[1].props.playermap
     for (let x = 0; x < boat[1]; x++) {
       expect(asSeenByOpponent[x]).to.eql(['B', ' '])
-      wrapper.instance().handleClick(x)
+      wrapper.instance().fireClick(x)
       expect(asSeenByOpponent[x]).to.eql(['B', 'B'])
     }
-    wrapper.instance().handleClick(5)
+    wrapper.instance().fireClick(5)
     expect(asSeenByOpponent[5]).to.eql(['~', '~'])
   });
 
   it('player can click button to change orientation then place ship vertically', () => {
     const wrapper = shallow(<Game />);
-    const boat = ['carrier',5,1]
-    wrapper.instance().handleFleetClick(boat)
-    wrapper.instance().changeHorizontal()
-    wrapper.instance().ownHandleClick(0)
+    const boat = ['carrier', 5, 1]
+    wrapper.instance().selectShipClick(boat)
+    wrapper.instance().switchOrientation()
+    wrapper.instance().placeShipClick(0)
     for (let x = 0; x < boat[1]; x++) {
       expect(wrapper.state('P1Map')[x*10][0]).to.eql("B")
     }
