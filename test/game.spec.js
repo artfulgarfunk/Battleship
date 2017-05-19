@@ -155,4 +155,9 @@ describe('<Game />', function () {
       expect(wrapper.state('P1Map')[x*10][0]).to.eql("B")
     }
   });
+
+  it('ends the game when a player\'s entire fleet has been hit', () => {
+    const wrapper = mount(<Game />);
+    
+  });
 })
