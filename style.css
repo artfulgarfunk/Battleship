@@ -1,5 +1,5 @@
-div {
-	background-color: #199999
+.holder {
+	background: url(https://images.unsplash.com/reserve/AXx3QORhRDKAMrbb8pX4_photo%202.JPG) no-repeat center center;
 }
 
 /*::-webkit-input-placeholder {

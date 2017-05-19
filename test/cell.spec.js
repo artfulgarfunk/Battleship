@@ -13,9 +13,9 @@ describe('<Cell />', () => {
     expect(wrapper.props().val).to.equal('hit')
   });
 
-  it ('contains a button', () => {
+  it ('contains a Button component (React-Bootstrap, yo)', () => {
     const wrapper = shallow(<Cell />);
-    expect(wrapper.find('button')).to.have.length(1);
+    expect(wrapper.find('Button')).to.have.length(1);
   });
 
   it('simulates click events', () => {
