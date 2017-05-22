@@ -11,17 +11,17 @@ import Switch from '../lib/components/switch';
 
 
 describe('<Game />', function () {
-  it('renders 2 player boards, 2 opponent boards,2 fleets & 3 switches(orientation and turn)', () => {
+  it('renders 1 player boards, 1 opponent boards, 1 fleet & 2 switches(orientation and turn)', () => {
     const wrapper = shallow(<Game />);
-    expect(wrapper.find(Board)).to.have.length(2);
-    expect(wrapper.find(OwnBoard)).to.have.length(2);
-    expect(wrapper.find(Fleet)).to.have.length(2);
-    expect(wrapper.find(Switch)).to.have.length(3);
+    expect(wrapper.find(Board)).to.have.length(1);
+    expect(wrapper.find(OwnBoard)).to.have.length(1);
+    expect(wrapper.find(Fleet)).to.have.length(1);
+    expect(wrapper.find(Switch)).to.have.length(2);
   });
 
-  it('renders a total of 442 Cell components', () => {
+  it('renders a total of 221 Cell components', () => {
     const wrapper = mount(<Game />);
-    expect(wrapper.find(Cell)).to.have.length(442);
+    expect(wrapper.find(Cell)).to.have.length(221);
   });
 
   it('with default values of "~"/" " for each cell', () => {
@@ -135,14 +135,11 @@ describe('<Game />', function () {
     const boat = ['carrier',5,1]
     wrapper.instance().handleFleetClick(boat)
     wrapper.instance().ownHandleClick(0)
-    const asSeenByOpponent = wrapper.find(Board).nodes[1].props.playermap
-    for (let x = 0; x < boat[1]; x++) {
-      expect(asSeenByOpponent[x]).to.eql(['B', ' '])
-      wrapper.instance().handleClick(x)
-      expect(asSeenByOpponent[x]).to.eql(['B', 'B'])
-    }
-    wrapper.instance().handleClick(5)
-    expect(asSeenByOpponent[5]).to.eql(['~', '~'])
+    wrapper.instance().switchPlayer()
+    wrapper.instance().handleClick(0)
+    expect(wrapper.state('P1Map')[0]).to.eql(['B', 'B'])
+    // expect(wrapper.find('B').count).to.eql(5)
+    // expect(wrapper.find('B')).to.have.length(221);
   });
 
   it('player can click button to change orientation then place ship vertically', () => {
@@ -158,6 +155,6 @@ describe('<Game />', function () {
 
   it('ends the game when a player\'s entire fleet has been hit', () => {
     const wrapper = mount(<Game />);
-    
+
   });
 })
