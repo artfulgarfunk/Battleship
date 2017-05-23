@@ -138,8 +138,6 @@ describe('<Game />', function () {
     wrapper.instance().switchPlayer()
     wrapper.instance().handleClick(0)
     expect(wrapper.state('P1Map')[0]).to.eql(['B', 'B'])
-    // expect(wrapper.find('B').count).to.eql(5)
-    // expect(wrapper.find('B')).to.have.length(221);
   });
 
   it('player can click button to change orientation then place ship vertically', () => {
@@ -155,6 +153,8 @@ describe('<Game />', function () {
 
   it('ends the game when a player\'s entire fleet has been hit', () => {
     const wrapper = mount(<Game />);
-
+    const boat = ['carrier',5,1]
+    wrapper.instance().handleFleetClick(boat)
+    expect()
   });
 })
