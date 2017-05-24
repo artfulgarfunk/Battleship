@@ -1,17 +1,41 @@
 # Battleship
 
-A MERN stack multiplayer Battleship game
+A TDD multiplayer Battleship game IN PROGRESS. Building to get to grips with a MERN stack and web sockets. Developed in sprints: currently there is a functioning game with players fleets and boards showing on separate screens, with a simple player toggle button to switch between the two.
+The next step is to implement web sockets so that players can battle each other online.  
 
-# User Stories
-......
+# Built with
 
+  - React
+  - Node JS
+  - MongoDB
+  - Express
+  - React-Router
+
+# Testing
+
+  - Enzyme
+  - Chai
+  - Sinon
 
 # To Do
-- separate to two boards; one you can see ships on (no fog), one belonging to opponent with pre-placed ships and fog'o'war
-- place ships on own board
-- Simple CSS for cells
-- ensure full test coverage!
-- player class with 2 separate pages; each has own board no fog, opponent board with fog
-- game finish condition
-- mongo db save game history
-- multiplayer via web sockets
+
+  - Web socket implementation
+  - Styling
+  - Endgame method
+  - Turn method for determining who goes next
+
+# Done
+
+- Added App, Board, Cell, Fleet, Game, ownBoard and Switch classes.
+- Minor Styling
+- A player can select ships from their fleet and place them on their own board
+- A player can toggle the orientation of a chosen ship before placing it
+- A player cannot place a ship within one cell of another ship
+- A player has a limited fleet size and cannot place more than the standard seven ships
+- A player can see all the cells in their own board
+- A player can see only fog for their enemies board
+- A player can click on their enemies board to reveal a hit or miss
+
+# Authors
+
+Jack Henderson, Stefan Liute, Varvarra Shinkarenko
