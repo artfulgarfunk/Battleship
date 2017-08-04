@@ -7,9 +7,7 @@ The next step is to implement web sockets so that players can battle each other 
 
   - React
   - Node JS
-  - MongoDB
   - Express
-  - React-Router
 
 # Testing
 

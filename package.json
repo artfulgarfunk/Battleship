@@ -13,10 +13,9 @@
     ]
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/markthethomas/react-testing-components-enzyme.git"
+    "type": "git"
   },
-  "author": "Mark Thomas <markthethomas@gmail.com>",
+  "author": "Jack Henderson",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/markthethomas/react-testing-components-enzyme/issues"
